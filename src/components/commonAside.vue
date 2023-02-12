@@ -6,11 +6,11 @@
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b">
+        background-color="#2a3139"
+        text-color="#9f9fa1"
+        active-text-color="#2a3139">
         <p class="managerName">{{ isCollapse ? '正也医药' : '上海正也医药有限公司'}}</p>
-        <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name">
+        <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name" @click="clickMenu(item)">
           <i class="el-icon-location"></i>
           <span>{{ item.label }}</span>
         </el-menu-item>
@@ -20,7 +20,7 @@
             <span slot="title">{{ item.label }}</span>
           </template>
           <el-menu-item-group v-for="subItem in item.children" :key="subItem.name" :index="subItem.name" >
-            <el-menu-item :index="subItem.name" >{{ subItem.label }}</el-menu-item>
+            <el-menu-item :index="subItem.name" @click="clickMenu(subItem)">{{ subItem.label }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -47,18 +47,18 @@ export default {
           // url:'mallManage/mallManage'
           children: [
             {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
+              path:'/functionAOne',
+              name:'functionAOne',
+              label:'功能A页面1',
               icon:'s-home',
-              url:'other/pageOne'
+              url:'functionA/functionAOne'
             },
             {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
+              path:'/functionATwo',
+              name:'functionATwo',
+              label:'功能A页面2',
               icon:'s-home',
-              url:'other/pageTwo'
+              url:'other/functionAOne'
             },
           ]
         },
@@ -104,75 +104,6 @@ export default {
               url:'other/pageTwo'
             },
           ]
-        },
-        {
-          // path:'/mall',
-          // name:'mall',
-          label:'功能功能功能D',
-          icon:'s-home',
-          // url:'mallManage/mallManage'
-          children: [
-            {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
-              icon:'s-home',
-              url:'other/pageOne'
-            },
-            {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
-              icon:'s-home',
-              url:'other/pageTwo'
-            },
-          ]
-        },
-        {
-          // path:'/mall',
-          // name:'mall',
-          label:'功能功能E',
-          icon:'s-home',
-          // url:'mallManage/mallManage'
-          children: [
-            {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
-              icon:'s-home',
-              url:'other/pageOne'
-            },
-            {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
-              icon:'s-home',
-              url:'other/pageTwo'
-            },
-          ]
-        },
-        {
-          // path:'/mall',
-          // name:'mall',
-          label:'功能功能F',
-          icon:'s-home',
-          // url:'mallManage/mallManage'
-          children: [
-            {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
-              icon:'s-home',
-              url:'other/pageOne'
-            },
-            {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
-              icon:'s-home',
-              url:'other/pageTwo'
-            },
-          ]
         }
       ]
     }
@@ -198,6 +129,14 @@ export default {
     handleClose(){
 
     },
+    clickMenu(item){
+      //当页面的路由与跳转路由不一致时才允许跳转
+      console.log(item,'item')
+      if(this.$route.path !== item.path && !(this.$route.path == '/home' && (item.path == '/'))){
+        this.$router.push(item.path)
+      }
+      // this.$store.commit('selectMenu',item)
+    }
   }
 }
 </script>
@@ -206,8 +145,8 @@ export default {
   border-right: solid 0;
   height: 100vh;
   .managerName {
-    background: #545c64;
-    color: #ddd;
+    background: #2a3139;
+    color: #bbbbb9;
     text-align: center;
     font-size: 14px;
   }
