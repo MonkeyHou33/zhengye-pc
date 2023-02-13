@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-aside width="12%">
+      <el-aside width="12%" :style="menuHeight">
         <common-aside />
       </el-aside>
       <el-container>
@@ -21,12 +21,20 @@ import commonHeader from '../components/commonHeader.vue'
 export default {
   data() {
     return {
-
+      menuHeight: {
+        height:"",
+        background:"#2a3139"
+      }
     }
   },
   components: {
     commonAside,
     commonHeader
+  },
+  created() {
+    //动态调整左侧菜单栏高度 document.documentElement.clientHeight
+    var docHeight = document.body.scrollHeight;
+    this.menuHeight.height = docHeight + "px";
   }
 }
 </script>

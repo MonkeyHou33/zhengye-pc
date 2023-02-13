@@ -122,6 +122,8 @@ export default {
       return this.menuData.filter( item => item.children)
     },
   },
+  created(){
+  },
   methods:{
     handleOpen(){
 
@@ -136,8 +138,8 @@ export default {
         this.$router.push(item.path)
       }
       // this.$store.commit('selectMenu',item)
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped lang="less">
@@ -150,5 +152,7 @@ export default {
     text-align: center;
     font-size: 14px;
   }
+  
 }
+
 </style>
