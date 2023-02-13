@@ -4,29 +4,31 @@
         <p>首页/新增</p>
         <p>新增二级</p>
     </div>
-    <div class="home-subject">
-        <hr class="home-subject-hr"/>
-          <span style="background-color: #4e8dfe;border-radius:50%;padding:0 5px;height:16px;font-size:12px;color:#fff">1</span>
-          <span style="padding:0 10px;width:70px"><b>协议主体</b></span>
-        <hr class="home-subject-hr"/>
-    </div>
+    <!-- 第一个分割线 -->
+    <home-divione />
+    <!-- 协议主体表单 -->
     <div class="home-subject-agreement">
         <home-agreement/>
     </div>
-    <div class="home-subject">
-      <hr class="home-subject-hr"/>
-        <span style="background-color: #4e8dfe;border-radius:50%;padding:0 5px;height:16px;font-size:12px;color:#fff">2</span>
-        <span style="padding:0 10px;width:70px"><b>产品政策</b></span>
-      <hr class="home-subject-hr"/>
-    </div>
-    <div>
-      <homeProduct />
-    </div>
+    <!-- 第二个分割线 -->
+    <homeDivitwo />
+    <!-- 产品政策表单 -->
+    <homeProduct />
+    <!-- 第三个分割线 -->
+    <home-divithree />
+    <!-- 补充协议表单 -->
+    <home-supplement />
+    <home-save />
   </div>
 </template>
 <script>
 import homeAgreement from '../components/home/homeAgreement.vue'
 import homeProduct from '../components/home/homeProduct.vue'
+import homeSupplement from '../components/home/homeSupplement.vue'
+import homeDivione from '../components/home/homeDivione.vue'
+import homeDivitwo from '../components/home/homeDivitwo.vue'
+import homeDivithree from '../components/home/homeDivithree.vue'
+import homeSave from '../components/home/homeSave.vue'
 export default {
   data() {
     return {
@@ -35,7 +37,12 @@ export default {
   },
   components: {
     homeAgreement,
-    homeProduct
+    homeProduct,
+    homeSupplement,
+    homeDivione,
+    homeDivitwo,
+    homeDivithree,
+    homeSave
   }
 }
 </script>
@@ -44,7 +51,7 @@ export default {
   background-color: #f5f5f5;
   .home-Breadcrumb {
     padding-top: 2px;
-    height: 80px;
+    height: 50px;
     background-color: #fff;
     p {
       padding-left: 30px; 
