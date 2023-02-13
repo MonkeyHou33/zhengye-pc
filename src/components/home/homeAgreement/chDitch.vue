@@ -1,29 +1,35 @@
 <template>
   <div>
     <el-form>
-      <div style="display:flex;justify-content: space-between;align-items: center;width:84%;height:40px">
-        <el-form-item>
-          <span class="select-name">购进渠道：</span>
-          <el-select
-            size="mini"
-            style="width:100px"
-            v-model="buyDitch"
-            placeholder="请选择"
-            @change="chooseDitch($event)">
-            <el-option
-              v-for="item in buyDitchValue"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </div>
+      <el-row>
+        <el-col :span="12" type="flex" class="row-bg" justify="end" style="height:40px">
+          <div class="grid-content bg-purple">
+            <el-form-item>
+              <span class="select-name">购进渠道：</span>
+              <el-select
+                size="mini"
+                style="width:100px"
+                v-model="buyDitch"
+                placeholder="请选择"
+                @change="chooseDitch($event)">
+                <el-option
+                  v-for="item in buyDitchValue"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <el-button size="mini" style="margin-left:10px">请选择渠道</el-button>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
     </el-form>
-    <div style="display:flex;justify-content:center;align-items: center;width:90%；text-align:center">
+    <div style="display:flex;justify-content:center;align-items: center;width:90%;margin:0 auto">
       <el-table
         :data="tableData"
-        style="width: 100%">
+        size="mini"
+        style="width: 100%;">
         <el-table-column
           prop="ditchNumber"
           label="指定渠道编码"/>
@@ -32,7 +38,7 @@
           label="指定渠道编码"/>
         <el-table-column
           prop="ditchProvince"
-          label="指定渠道编码"/>
+          label="所在省"/>
       </el-table>
     </div>
   </div>
@@ -72,6 +78,8 @@ export default {
 <style scoped lang="less">
 .select-name {
     color:#7a7a7a;
-    margin-left: 16px;
   }
+/deep/.el-table th.el-table__cell {
+  background-color: #eee;
+}
 </style>

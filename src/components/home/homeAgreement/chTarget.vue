@@ -1,46 +1,54 @@
 <template>
   <div>
     <el-form>
-      <div style="display:flex;justify-content: space-between;align-items: center;width:86%;height:40px">
-        <el-form-item>
-          <span class="select-name">购进指标：</span>
-          <el-select size="mini" style="width:100px" v-model="purchaseTarget" placeholder="请选择" @change="changePurchase($event)">
-            <el-option
-              v-for="item in purchaseTargetValue"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <el-input
-            size="mini"
-            style="width:150px;margin-left:10px"
-            placeholder="输入金额/数量"
-            v-model="inputPurchase"
-            :disabled="Purchase"
-            @change="changeInputPurchase($event)">
-          </el-input>
-        </el-form-item>
-        <el-form-item>
-          <span class="select-name">纯销指标：</span>
-          <el-select size="mini" style="width:80px" v-model="saleTarget" placeholder="请选择" @change="changeSale($event)">
-            <el-option
-              v-for="item in saleTargetValue"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <el-input
-            size="mini"
-            style="width:150px;margin-left:10px"
-            placeholder="输入金额/数量"
-            v-model="inputSale"
-            :disabled="sale"
-            @change="changeInputSale($event)">
-          </el-input>
-        </el-form-item>
-      </div>
+      <el-row  type="flex" class="row-bg" justify="end" style="height:40px">
+        <el-col :span="12">
+          <div class="grid-content bg-purple">
+            <el-form-item>
+              <span class="select-name">购进指标：</span>
+              <el-select size="mini" style="width:100px" v-model="purchaseTarget" placeholder="请选择" @change="changePurchase($event)">
+                <el-option
+                  v-for="item in purchaseTargetValue"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <el-input
+                size="mini"
+                style="width:150px;margin-left:10px"
+                placeholder="输入金额/数量"
+                v-model="inputPurchase"
+                :disabled="Purchase"
+                @change="changeInputPurchase($event)">
+              </el-input>
+            </el-form-item>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content bg-purple-light">
+            <el-form-item>
+              <span class="select-name">纯销指标：</span>
+              <el-select size="mini" style="width:80px" v-model="saleTarget" placeholder="请选择" @change="changeSale($event)">
+                <el-option
+                  v-for="item in saleTargetValue"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <el-input
+                size="mini"
+                style="width:150px;margin-left:10px"
+                placeholder="输入金额/数量"
+                v-model="inputSale"
+                :disabled="sale"
+                @change="changeInputSale($event)">
+              </el-input>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
 </template>
@@ -123,7 +131,6 @@ export default {
 </script>
 <style scoped lang="less">
 .select-name {
-    color:#7a7a7a;
-    margin-left: 16px;
+    color:#7a7a7a;  
   }
 </style>

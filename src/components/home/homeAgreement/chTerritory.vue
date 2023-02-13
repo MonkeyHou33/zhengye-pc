@@ -1,30 +1,38 @@
 <template>
   <div>
     <el-form>
-      <div style="display:flex;justify-content: space-between;align-items: center;width:84%;height:40px">
-        <el-form-item>
-          <span class="select-name">销售区域：</span>
-          <el-button size="mini" style="width:100px" @click="chooseRegion">选择区域</el-button>
-          <el-button
-            type="primary" plain
-            size="mini"
-            v-for="item in confirmCities"
-            :key="item.id"
-            @click="cancleCityName(item)">
-              <span>{{item.cityName}}</span>
-              <span style="padding-left:10px">x</span>
-          </el-button>
-        </el-form-item>
-        <el-form-item>
-          <span class="select-name">签订时间：</span>
-          <el-date-picker
-            size="mini"
-            v-model="signingTime"
-            type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
-        </el-form-item>
-      </div>
+      <el-row type="flex" class="row-bg" justify="end" style="height:40px">
+        <el-col :span="12" >
+          <div class="grid-content bg-purple">
+            <el-form-item>
+              <span class="select-name">销售区域：</span>
+              <el-button size="mini" style="width:100px" @click="chooseRegion">选择区域</el-button>
+              <el-button
+                type="primary" plain
+                size="mini"
+                v-for="item in confirmCities"
+                :key="item.id"
+                @click="cancleCityName(item)">
+                  <span>{{item.cityName}}</span>
+                  <span style="padding-left:10px">x</span>
+              </el-button>
+            </el-form-item>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content bg-purple-light">
+            <el-form-item>
+              <span class="select-name">签订时间：</span>
+              <el-date-picker
+                size="mini"
+                v-model="signingTime"
+                type="datetime"
+                placeholder="选择日期时间">
+              </el-date-picker>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
     </el-form>
     <el-dialog
       title="选择区域"
@@ -116,7 +124,6 @@ export default {
 <style scoped lang="less">
 .select-name {
     color:#7a7a7a;
-    margin-left: 16px;
   }
 .confirm-cancle{
   display: flex;

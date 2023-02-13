@@ -17,3 +17,9 @@ export const getChooseDitch = () => {
   //返回一个Promise对象
   return http.post('/homeAgreement/getChooseDitch')
 }
+
+//请求产品季度数据接口
+export const getQuarterList = () => {
+  //返回一个Promise对象
+  return http.post('/homeProduct/getQuarterList')
+}

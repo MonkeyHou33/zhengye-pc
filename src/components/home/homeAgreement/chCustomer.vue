@@ -1,6 +1,39 @@
 <template>
-  <div style="height:300px">
-    <el-form>
+  <div>
+    <el-form class="demo-ruleForm">
+      <el-row type="flex" class="row-bg" justify="end" style="height:40px">
+        <el-col :span="12">
+          <div class="grid-content bg-purple">
+            <el-form-item>
+              <span style="color:#ff100f;">*</span> 
+              <span class="select-name">协议客户：</span>
+              <el-button size="mini" style="width:100px" @click="chooseCustomer">选择客户</el-button>
+              <span style="color:#666666;text-align:center;font-size:12px;margin-left:10px">{{ customerName }}</span>
+            </el-form-item>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content bg-purple">
+            <el-form-item>
+              <span class="select-name">协议状态：</span>
+              <el-select size="mini" v-model="protocolStatus" placeholder="请选择" @change="chooseProtocolStatus($event)">
+                <el-option
+                  v-for="item in protocolStatusValue"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
+    </el-form>
+    <el-dialog 
+      title="选择区域"
+      :visible.sync="colseDialog"
+      height="60%"
+      width="40%">
       <div class="CustomerList">
         <el-button
           class="CustomerList-button"
@@ -20,7 +53,7 @@
           确定
         </el-button>
       </div>
-    </el-form>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -30,10 +63,20 @@ export default {
   data() {
     return {
       customerList:[],
-      children:{
-        colseDialog:true,
-        CustomerSure:'',
-      },
+      colseDialog:false,
+      CustomerSure:'',
+      customerName:'',
+      protocolStatus:'',//协议状态
+      protocolStatusValue:[
+        {
+          label:'正常',
+          value:'1'
+        },
+        {
+          label:'不正常',
+          value:'2'
+        },
+      ]
     }
   },
   created(){
@@ -44,28 +87,34 @@ export default {
   },
   methods:{
     confirmCustomer(item){
-      this.children = {
-        colseDialog:false,
-        CustomerSure:item
-      }
+      this.customerName = item.customerName
+      this.CustomerSure = item
+    },
+    //选择客户弹窗
+    chooseCustomer(){
+      this.colseDialog = true  
     },
     //取消关闭弹窗
     cancle(){
-      this.children = {
-        CustomerSure:'',
-        colseDialog:false
-      }
-      this.$emit('cancleCustomer',this.children)
+      this.colseDialog = false
+      this.CustomerSure = '',
+      this.customerName = ''
+      this.$emit('confCustomer',this.CustomerSure)
     },
     //确认选择此公司
     confirm(){
-      if(this.children.CustomerSure === ''){
+      if(this.CustomerSure === ''){
         this.$alert('请选择协议客户', {
           confirmButtonText: '确定',
         });
       } else {
-        this.$emit('confirmCustomer',this.children)
+        this.$emit('confCustomer',this.CustomerSure)
+        this.colseDialog = false
       }
+    },
+    //选择协议状态
+    chooseProtocolStatus(val){
+      this.$emit('protocolState',val)
     }
   },
 }
@@ -85,4 +134,7 @@ export default {
   align-items: center;
   margin-top:20px
 }
+.select-name {
+    color:#7a7a7a;
+  }
 </style>

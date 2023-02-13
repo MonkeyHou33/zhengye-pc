@@ -9,7 +9,7 @@
         background-color="#2a3139"
         text-color="#9f9fa1"
         active-text-color="#2a3139">
-        <p class="managerName">{{ isCollapse ? '正也医药' : '上海正也医药有限公司'}}</p>
+        <!-- <p class="managerName">{{ isCollapse ? '正也医药' : '上海正也医药有限公司'}}</p> -->
         <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name" @click="clickMenu(item)">
           <i class="el-icon-location"></i>
           <span>{{ item.label }}</span>
