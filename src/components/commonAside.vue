@@ -2,14 +2,15 @@
   <div>
     <el-col :span="24">
       <el-menu
-        default-active="2"
+        default-active="1"
         class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
         background-color="#2a3139"
         text-color="#9f9fa1"
-        active-text-color="#2a3139">
-        <!-- <p class="managerName">{{ isCollapse ? '正也医药' : '上海正也医药有限公司'}}</p> -->
+        active-text-color="#ffffff">
+        <div style="display:flex;justify-content:center;align-items:center">
+          <img src="../assets/header.png" style="width:120px;height:60px;">
+        </div>
+        <p class="managerName">上海正也医药有限公司</p>
         <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name" @click="clickMenu(item)">
           <i class="el-icon-location"></i>
           <span>{{ item.label }}</span>
@@ -19,7 +20,7 @@
             <i class="el-icon-location"></i>
             <span slot="title">{{ item.label }}</span>
           </template>
-          <el-menu-item-group v-for="subItem in item.children" :key="subItem.name" :index="subItem.name" >
+          <el-menu-item-group v-for="subItem in item.children" :key="subItem.name" :index="subItem.name">
             <el-menu-item :index="subItem.name" @click="clickMenu(subItem)">{{ subItem.label }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -37,82 +38,58 @@ export default {
           name:'home',
           label:'首页展示页',
           icon:'s-home',
-          url:'home/home'
+          url:'home/home',
         },
         {
-          // path:'/mall',
+          path:'/pageAOne',
           // name:'mall',
           label:'功能功能功能A',
           icon:'s-home',
           // url:'mallManage/mallManage'
           children: [
             {
-              path:'/functionAOne',
-              name:'functionAOne',
+              path:'/pageAOne',
+              name:'pageAOne',
               label:'功能A页面1',
               icon:'s-home',
-              url:'functionA/functionAOne'
+              url:'pageA/pageAOne'
             },
             {
-              path:'/functionATwo',
-              name:'functionATwo',
+              path:'/pageATwo',
+              name:'pageATwo',
               label:'功能A页面2',
               icon:'s-home',
-              url:'other/functionAOne'
+              url:'page/pageATwo'
             },
           ]
         },
         {
-          // path:'/user',
+          path:'/pageBOne',
           // name:'user',
           label:'功能功能B',
           icon:'s-home',
           // url:'userManage/userManage'
           children: [
             {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
+              path:'/pageBOne',
+              name:'pageBOne',
+              label:'功能B，页面1',
               icon:'s-home',
-              url:'other/pageOne'
+              url:'pageB/pageBOne'
             },
             {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
+              path:'/pageBTwo',
+              name:'pageBTwo',
+              label:'功能B，页面2',
               icon:'s-home',
-              url:'other/pageTwo'
+              url:'pageB/pageBTwo'
             },
           ]
         },
-        {
-          label:'功能功能C',
-          icon:'s-home',
-          children: [
-            {
-              path:'/page1',
-              name:'page1',
-              label:'页面1',
-              icon:'s-home',
-              url:'other/pageOne'
-            },
-            {
-              path:'/page2',
-              name:'page2',
-              label:'页面2',
-              icon:'s-home',
-              url:'other/pageTwo'
-            },
-          ]
-        }
-      ]
+      ],
     }
   },
   computed:{
-    //导航栏收起展开显示不同公司名称
-    isCollapse(){
-      return this.$store.state.aside.isCollapse
-    },
     //首页没有子菜单
     noChildren(){
       return this.menuData.filter( item => !item.children)
@@ -122,22 +99,16 @@ export default {
       return this.menuData.filter( item => item.children)
     },
   },
-  created(){
+  mounted(){
   },
   methods:{
-    handleOpen(){
-
-    },
-    handleClose(){
-
-    },
     clickMenu(item){
       //当页面的路由与跳转路由不一致时才允许跳转
-      console.log(item,'item')
       if(this.$route.path !== item.path && !(this.$route.path == '/home' && (item.path == '/'))){
         this.$router.push(item.path)
       }
-      // this.$store.commit('selectMenu',item)
+      this.$store.commit('selectMenu',item)
+      this.$store.commit('selectMenuName',item.label)
     },
   },
 }

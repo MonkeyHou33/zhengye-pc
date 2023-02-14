@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-    <div class="home-Breadcrumb">
-        <p>首页/新增</p>
-        <p>新增二级</p>
-    </div>
     <!-- 第一个分割线 -->
     <home-divione />
     <!-- 协议主体表单 -->
@@ -42,7 +38,7 @@ export default {
     homeDivione,
     homeDivitwo,
     homeDivithree,
-    homeSave
+    homeSave,
   }
 }
 </script>

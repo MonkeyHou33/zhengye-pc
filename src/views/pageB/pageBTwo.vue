@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>功能A，2页面</h1>
+    <h1>B，2页面</h1>
   </div>
 </template>
 <script>
