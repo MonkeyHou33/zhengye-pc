@@ -28,9 +28,11 @@ yarn serve
 - 做了协议客户必须选择项校验
 
 ### 使用技术
-- vue2
-- element-ui
-- axios
-- vuex
-- vue-router
-- mock.js
+- vue 2.6.14
+- element-ui 2.15.12
+- less 4.1.3
+- axios 1.3.2
+- vuex 3.6.2
+- vue-router 3.6.5
+- mock.js 1.1.0
+

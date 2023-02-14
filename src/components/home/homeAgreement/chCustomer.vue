@@ -99,6 +99,7 @@ export default {
       this.colseDialog = false
       this.CustomerSure = '',
       this.customerName = ''
+      this.$store.commit('selectProduct','')
       this.$emit('confCustomer',this.CustomerSure)
     },
     //确认选择此公司
@@ -109,6 +110,7 @@ export default {
         });
       } else {
         this.$emit('confCustomer',this.CustomerSure)
+        this.$store.commit('selectProduct',this.CustomerSure.customerName)
         this.colseDialog = false
       }
     },
